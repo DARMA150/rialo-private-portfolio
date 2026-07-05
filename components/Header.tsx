@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import RealWalletConnectButton from "@/components/RealWalletConnectButton";
 
 interface ViewKeyData {
   key: string;
@@ -228,7 +229,6 @@ export default function Header({
               </AnimatePresence>
             </div>
           )}
-
           {/* Add Transaction Button */}
           <button
             onClick={onOpenAddTransaction}

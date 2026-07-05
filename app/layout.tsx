@@ -1,9 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import dynamic from 'next/dynamic';
+
+const SolanaWalletProvider = dynamic(
+  () => import('@/components/SolanaWalletProvider').then((mod) => mod.SolanaWalletProvider),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
-  title: "Rialo Private Portfolio & Tax Tool",
-  description: "REX Confidential Portfolio Aggregator & Reactive Smart Tax Reporter.",
+  title: "Rialo Private Portfolio",
+  description: "Privacy-first portfolio & tax tool built for Rialo",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -13,14 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="antialiased min-h-screen bg-background text-textPrimary">
-        {children}
+      <body className="bg-[#0a0a0f] text-white antialiased">
+        <SolanaWalletProvider>
+          {children}
+        </SolanaWalletProvider>
+        <footer className="border-t border-[#1f1f28] py-6 text-center text-sm text-white/50">
+          Built for Rialo • Demo on Vercel style
+        </footer>
       </body>
     </html>
   );
